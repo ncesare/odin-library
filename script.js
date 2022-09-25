@@ -36,14 +36,20 @@ function addNewBook(newBook) {
     const bookTitle = document.createElement('div');
     const bookAuthor = document.createElement('div');
     const bookPages = document.createElement('div');
+    const hasRead = document.createElement('input');
+    const readLabel = document.createElement('label');
+    
+    hasRead.setAttribute('type', 'checkbox');
 
-    bookTitle.textContent = newBook.title;
-    bookAuthor.textContent = newBook.author;
-    bookPages.textContent = newBook.pages;
+    bookTitle.textContent = 'Title: ' + newBook.title;
+    bookAuthor.textContent = 'Author: ' + newBook.author;
+    bookPages.textContent = 'Pages: ' + newBook.pages;
+    hasRead.checked = newBook.read;
+    readLabel.textContent = 'Read: '
 
     bookContainer.classList.add('book');
     shelf.append(bookContainer);
-    bookContainer.append(bookTitle, bookAuthor, bookPages);
+    bookContainer.append(bookTitle, bookAuthor, bookPages, readLabel, hasRead);
 }
 
 

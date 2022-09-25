@@ -40,3 +40,7 @@ button {
     padding: 16px;
     gap: 8px;
 }
+
+.book>input[type="checkbox"] {
+    accent-color: green;
+}
