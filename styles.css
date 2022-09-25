@@ -1,0 +1,24 @@
+:root {
+    font-size: 12pt;
+}
+
+#entry-form {
+    margin: 16px;
+    display: grid;
+    grid-template-columns: 50px 200px;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 16px
+}
+
+#entry-form>label {
+    align-self: center;
+}
+
+#entry-form>input[type="checkbox"] {
+    justify-self: start;
+}
+
+button {
+    grid-column: 1 / -1;
+    width: 8rem;
+}
