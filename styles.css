@@ -6,7 +6,7 @@
     margin: 16px;
     display: grid;
     grid-template-columns: 50px 200px;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     gap: 16px
 }
 
@@ -19,6 +19,24 @@
 }
 
 button {
-    grid-column: 1 / -1;
     width: 8rem;
+    grid-column: 1 / -1;
+}
+
+#shelf {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
+    width: 80%;
+    margin: 0 auto;
+}
+
+.book {
+    display: grid;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: grey;
+    color: white;
+    padding: 16px;
+    gap: 8px;
 }
