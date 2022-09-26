@@ -5,12 +5,15 @@ const readInput = document.querySelector('#read');
 
 const addBook = document.querySelector('#add-book');
 
+const bookArray = [];
+
 addBook.addEventListener('click', () => {
     const newBook = new Book();
     textInputs.forEach(input => newBook[input.id] = input.value);
     newBook.read = readInput.checked;
     addNewBook(newBook);
     clear();
+    bookArray.push(newBook);
 })
 
 document.querySelector('#clear').addEventListener('click', () => clear());
