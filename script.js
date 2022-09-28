@@ -36,6 +36,8 @@ function clear() {
 function addNewBook(newBook) {
     const bookContainer = document.createElement('div');
 
+    // Create on-page elements for each new book
+
     const bookTitle = document.createElement('div');
     const bookAuthor = document.createElement('div');
     const bookPages = document.createElement('div');
@@ -43,6 +45,13 @@ function addNewBook(newBook) {
     const readLabel = document.createElement('label');
     
     hasRead.setAttribute('type', 'checkbox');
+
+    // 'Read' checkbox updates information in the books array
+
+    hasRead.addEventListener('click', () => {
+        let thisBook = bookArray.find(book => book.title == newBook.title);
+        thisBook.read = hasRead.checked;
+    })
 
     bookTitle.textContent = 'Title: ' + newBook.title;
     bookAuthor.textContent = 'Author: ' + newBook.author;
