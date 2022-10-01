@@ -1,28 +1,24 @@
-
-// Force run the function to test
-
-makeForm();
-
+makeStartNewButton();
 
 const shelf = document.querySelector('#shelf');
 
-const textInputs = document.querySelectorAll('input[type="text"]');
-const readInput = document.querySelector('#read');
-
-const addBook = document.querySelector('#add-book');
-
 const bookArray = [];
 
-addBook.addEventListener('click', () => {
-    const newBook = new Book();
-    textInputs.forEach(input => newBook[input.id] = input.value);
-    newBook.read = readInput.checked;
-    addNewBook(newBook);
-    clear();
-    bookArray.push(newBook);
-})
+function makeStartNewButton() {
+        // Re-add the '+' button to the page.
 
-document.querySelector('#clear').addEventListener('click', () => clear());
+        const startNew = document.createElement('button');
+        startNew.type = 'button';
+        startNew.id = 'start-new';
+        startNew.textContent = '+'
+
+        startNew.addEventListener('click', () => {
+            makeForm();
+            startNew.remove()
+        })
+    
+        document.body.prepend(startNew);
+}
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -32,11 +28,6 @@ function Book(title, author, pages, read) {
     this.info = function() {
         return `${this.title} by ${this.author} is ${this.pages} long.`
     }
-}
-
-function clear() {
-    textInputs.forEach(input => input.value = '');
-    readInput.checked = false;
 }
 
 function addNewBook(newBook) {
@@ -74,10 +65,11 @@ function makeForm() {
     const formContainer = document.createElement('div');
     formContainer.id = 'entry-form';
 
-    makeFormElement('title', formContainer);
-    makeFormElement('author', formContainer);
-    makeFormElement('pages', formContainer);
-    makeFormRead(formContainer);
+    let textInputs = [makeFormElement('title', formContainer), 
+                    makeFormElement('author', formContainer), 
+                    makeFormElement('pages', formContainer)];
+    console.log(textInputs);
+    const readInput = makeFormRead(formContainer);
 
     const addBookButton = document.createElement('button');
     addBookButton.type = 'button';
@@ -89,10 +81,30 @@ function makeForm() {
     clearButton.id = 'clear';
     clearButton.textContent = 'Clear';
 
+    clearButton.addEventListener('click', () => clear());
+
     formContainer.append(addBookButton, clearButton);
 
     const body = document.querySelector('body');
     body.prepend(formContainer);
+
+    addBookButton.addEventListener('click', () => addBook());
+
+    function addBook() {
+        const newBook = new Book();
+        textInputs.forEach(input => newBook[input.id] = input.value);
+        newBook.read = readInput.checked;
+        addNewBook(newBook);
+        bookArray.push(newBook);
+    
+        formContainer.remove();
+        makeStartNewButton();
+    }    
+
+    function clear() {
+        textInputs.forEach(input => input.value = '');
+        readInput.checked = false;
+    }    
 }
 
 function makeFormElement(element, formContainer) {
@@ -105,6 +117,8 @@ function makeFormElement(element, formContainer) {
     input.id = element;
 
     formContainer.append(label, input);
+
+    return input;
 }
 
 function makeFormRead(formContainer) {
@@ -117,6 +131,8 @@ function makeFormRead(formContainer) {
     input.id = 'read';
 
     formContainer.append(label, input);
+
+    return input;
 }
 
 

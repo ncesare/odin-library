@@ -2,6 +2,12 @@
     font-size: 12pt;
 }
 
+#start-new {
+    height: 80px;
+    width: 80px;
+    font-size: 64px;
+}
+
 #entry-form {
     margin: 16px;
     display: grid;
