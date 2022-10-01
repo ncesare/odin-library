@@ -1,3 +1,9 @@
+
+// Force run the function to test
+
+makeForm();
+
+
 const shelf = document.querySelector('#shelf');
 
 const textInputs = document.querySelectorAll('input[type="text"]');
@@ -64,7 +70,54 @@ function addNewBook(newBook) {
     bookContainer.append(bookTitle, bookAuthor, bookPages, readLabel, hasRead);
 }
 
+function makeForm() {
+    const formContainer = document.createElement('div');
+    formContainer.id = 'entry-form';
 
+    makeFormElement('title', formContainer);
+    makeFormElement('author', formContainer);
+    makeFormElement('pages', formContainer);
+    makeFormRead(formContainer);
+
+    const addBookButton = document.createElement('button');
+    addBookButton.type = 'button';
+    addBookButton.id = 'add-book';
+    addBookButton.textContent = 'Add Book';
+
+    const clearButton = document.createElement('button');
+    clearButton.type = 'button';
+    clearButton.id = 'clear';
+    clearButton.textContent = 'Clear';
+
+    formContainer.append(addBookButton, clearButton);
+
+    const body = document.querySelector('body');
+    body.prepend(formContainer);
+}
+
+function makeFormElement(element, formContainer) {
+    const label = document.createElement('label');
+    label.setAttribute('for', element);
+    label.textContent = `${element}:`; // Capitalized in CSS
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.id = element;
+
+    formContainer.append(label, input);
+}
+
+function makeFormRead(formContainer) {
+    const label = document.createElement('label');
+    label.setAttribute('for', 'read');
+    label.textContent = 'Read:';
+    
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.id = 'read';
+
+    formContainer.append(label, input);
+}
 
 
 

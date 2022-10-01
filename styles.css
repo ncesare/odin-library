@@ -12,6 +12,7 @@
 
 #entry-form>label {
     align-self: center;
+    text-transform: capitalize;
 }
 
 #entry-form>input[type="checkbox"] {
