@@ -86,7 +86,7 @@ function makeForm() {
     formContainer.append(addBookButton, clearButton);
 
     const body = document.querySelector('body');
-    body.prepend(formContainer);
+    body.append(formContainer);
 
     addBookButton.addEventListener('click', () => addBook());
 
